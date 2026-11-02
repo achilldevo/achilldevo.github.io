@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cool stuff</title>
+<meta property="og:title" content="cool stuff">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+/* Made with site-editor.html — open that to change any of this.
+   The colours are all here, and everything else follows them. */
+:root{
+  --bg:#0C0804; --window:#15100A; --panel:#1E1710; --line:#352A1C;
+  --text:#F6EEE2; --dim:#BAA488; --accent:#F0A741; --second:#9FD4E8;
+  --on-accent:#0E1013; --on-second:#0E1013;
+  --r:14px;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --goofy: "Chalkboard SE", "Comic Sans MS", "Marker Felt", "Bradley Hand", cursive;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 var(--mono);
+  -webkit-font-smoothing:antialiased;padding:34px 18px 70px}
+a{color:var(--accent)}
+img{max-width:100%;height:auto}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+.window{max-width:940px;margin:0 auto;background:var(--window);
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.titlebar{display:flex;align-items:center;gap:9px;padding:13px 16px;
+  border-bottom:1px solid var(--line);background:rgba(128,128,128,.05)}
+.dot{width:12px;height:12px;border-radius:50%}
+.dot.r{background:#FF5F57}.dot.y{background:#FEBC2E}.dot.g{background:#28C840}
+.titlebar span{margin-left:auto;margin-right:auto;font-size:13px;color:var(--dim);
+  letter-spacing:.06em;transform:translateX(-24px)}
+.inner{padding:46px 30px 54px}
+
+.namecard{display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+  border:1px solid var(--line);border-radius:var(--r);background:var(--panel);
+  padding:20px 22px;position:relative;overflow:hidden}
+.namecard::after{content:"";position:absolute;inset:0 0 0 auto;width:1px;right:104px;
+  background:repeating-linear-gradient(var(--line) 0 6px, transparent 6px 12px)}
+.avatar{width:76px;height:76px;border-radius:50%;flex:0 0 auto;border:2px solid var(--accent);
+  object-fit:cover;background:rgba(128,128,128,.08);display:grid;place-items:center;
+  color:var(--dim);font-size:11px;text-align:center}
+.who h1{margin:0;font-size:23px;letter-spacing:-.01em}
+.who p{margin:3px 0 0;color:var(--dim);font-size:14px;letter-spacing:.14em;text-transform:uppercase}
+.stamp{margin-left:auto;flex:0 0 auto;border:2px solid var(--second);color:var(--second);
+  border-radius:7px;padding:7px 12px;font-size:11px;letter-spacing:.17em;text-transform:uppercase;
+  font-weight:700;transform:rotate(-7deg);opacity:.9;text-align:center;line-height:1.3}
+
+.chat{font-family:var(--goofy);font-size:19px;margin:30px 0 0}
+.hi{color:var(--accent)}
+
+.rule{display:flex;align-items:center;gap:14px;margin:46px 0 20px;color:var(--dim);
+  font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+.rule::after{content:"";flex:1;height:1px;background:var(--line)}
+.rule i{color:var(--line);font-style:normal}
+
+.cards{display:grid;gap:16px;align-items:start;
+  grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.card{border:1px solid var(--line);border-radius:var(--r);background:var(--panel);overflow:hidden}
+.card>summary{list-style:none;cursor:pointer;padding:20px 22px;display:block}
+.card>summary::-webkit-details-marker{display:none}
+.card>summary:hover{background:rgba(128,128,128,.07)}
+.card .icon{font-size:26px;line-height:1;display:block;margin-bottom:12px}
+.card .icon img{width:46px;image-rendering:pixelated;display:block}
+.card h3{margin:0;font-size:18px;letter-spacing:-.01em}
+.card .sub{margin:5px 0 0;color:var(--dim);font-size:14px}
+.card .more{margin:14px 0 0;color:var(--accent);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase}
+.card[open]{grid-column:1 / -1}
+.card[open] .more{color:var(--dim)}
+.card[open] .more::after{content:" — open"}
+.card .body{padding:0 22px 22px;border-top:1px solid var(--line);margin-top:4px;padding-top:20px}
+.card .body p{font-family:var(--goofy);font-size:18px;margin:0 0 16px;line-height:1.6}
+
+.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);
+  border-radius:999px;padding:4px 11px;font-size:12px;color:var(--dim)}
+.pill.live{border-color:var(--accent);color:var(--accent)}
+.pill.live b{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+
+.grab{display:flex;align-items:center;gap:14px;flex-wrap:nowrap;
+  border:1px dashed var(--line);border-radius:var(--r);padding:16px;
+  background:rgba(128,128,128,.05)}
+.grab>div{min-width:0}
+.sprite{flex:0 0 auto;display:block;border-radius:10px;padding:4px}
+.sprite img{width:76px;image-rendering:pixelated;display:block}
+.sprite:hover{background:rgba(128,128,128,.12)}
+.grab .say{font-family:var(--goofy);font-size:17px;color:var(--dim);margin:0}
+.grab .point{font-family:var(--goofy);font-size:17px;color:var(--accent);margin:4px 0 12px}
+.dl{display:inline-block;background:var(--accent);color:var(--on-accent);border-radius:10px;
+  padding:11px 18px;text-decoration:none;font-weight:700;font-size:15px}
+a.dl:hover{filter:brightness(1.1)}
+.dl[aria-disabled]{opacity:.55;cursor:default}
+
+.soon{display:inline-block;border:2px dashed var(--second);color:var(--second);
+  border-radius:9px;padding:9px 16px;transform:rotate(-3deg);font-size:13px;
+  letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+
+.coffee{display:inline-flex;align-items:center;gap:10px;background:var(--second);
+  color:var(--on-second);text-decoration:none;border-radius:12px;padding:14px 22px;
+  font-weight:700;font-size:16px}
+.coffee:hover{filter:brightness(1.07)}
+.support{color:var(--dim);font-size:15.5px;max-width:62ch}
+.support b{color:var(--text);font-weight:700}
+
+footer{margin-top:46px;padding-top:20px;border-top:1px solid var(--line);
+  color:var(--dim);font-size:12.5px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+footer .sp{margin-left:auto}
+footer a{color:var(--dim)}
+
+@media (max-width:620px){
+  body{padding:16px 12px 40px}
+  .inner{padding:32px 16px 40px}
+  .namecard::after{display:none}
+  .stamp{margin-left:0}
+  .rule{font-size:11px;letter-spacing:.12em;gap:10px}
+  .chat{font-size:17px}
+  .grab{flex-wrap:wrap}
+  .grab .ar{display:none}
+  .grab .point::before{content:"\2191 "}
+  .card>summary,.card .body{padding-left:16px;padding-right:16px}
+}
+</style>
+</head>
+<body>
+<div class="window">
+
+  <div class="titlebar">
+    <i class="dot r"></i><i class="dot y"></i><i class="dot g"></i>
+    <span>cool stuff</span>
+  </div>
+
+  <div class="inner">
+
+    <div class="namecard">
+      <img class="avatar" src="img/IMG_0460.jpg" alt="">
+      <div class="who">
+        <h1>Achilldevo</h1>
+        <p>cool developer</p>
+      </div>
+      <div class="stamp">made<br>with care</div>
+    </div>
+
+    <p class="chat">Like to build stuff? <span class="hi">me too.</span></p>
+
+    <div class="rule"><i>//</i> wanna see my stuff? go ahead:</div>
+
+    <div class="cards">
+      <details class="card">
+        <summary>
+          <span class="icon"><img class="" src="img/buddy-idle.gif" alt=""></span>
+          <h3>Buddy</h3>
+          <p class="sub">a little guy who lives on your Mac</p>
+          <p class="more">click me</p>
+        </summary>
+        <div class="body">
+          <p>He&#39;s a little guy that lives on your Mac.<br>look! there he is now!</p>
+          <div class="grab">
+            <a class="sprite" href="Buddy.dmg" download aria-label="Download Buddy"><img class="" src="img/buddy-wave.gif" alt="Download Buddy"></a>
+            <div>
+              <p class="say">just saying…   his download is riiiight there</p>
+              <p class="point"><span class="ar">&#8592;</span> click it!!</p>
+              <a class="dl" href="Buddy.dmg" download>Download Buddy</a>
+            </div>
+          </div>
+          
+          <p style="margin:16px 0 0"><span class="pill live"><b></b> live</span></p>
+        </div>
+      </details>
+      <details class="card">
+        <summary>
+          <span class="icon"><img class="" src="img/atelier.png" alt=""></span>
+          <h3>Atelier</h3>
+          <p class="sub">a video editor</p>
+          <p class="more">click me</p>
+        </summary>
+        <div class="body">
+          <p>Editing software that is free and pretty cool.</p>
+          <div class="grab">
+            
+            <div>
+              <p class="say">You know whats actually cool? Free stuff!</p>
+              <p class="point"><span class="ar">&#8592;</span> Looks cool right?</p>
+              <span class="dl" aria-disabled="true">Download in progress...</span>
+            </div>
+          </div>
+          <span class="soon">coming soon…</span>
+          
+        </div>
+      </details>
+    </div>
+
+    <div class="rule"><i>//</i> support the work</div>
+    <p class="support">Everything here is <b>free, no ads, no money :(</b>. If something I made was useful to you, please consider clicking the button below. If not, please email me what could be improved!</p>
+    
+
+    <footer>
+      <span>&copy; 2026</span>
+      <span>Enjoy</span>
+      <span class="sp"></span>
+      
+    </footer>
+
+  </div>
+</div>
+</body>
+</html>
