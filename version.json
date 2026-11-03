@@ -1,6 +1,6 @@
 {
-  "version": "1.0.3",
-  "url": "",
-  "notes": "fixed the signature that made macOS call him damaged",
-  "size": 39155427
+  "version": "1.0.4",
+  "url": "https://github.com/achilldevo/achilldevo.github.io/releases/download/v1.0.4/Buddy.dmg",
+  "notes": "he moves smoothly now, and he can tell you when there is a newer him",
+  "size": 39165919
 }
